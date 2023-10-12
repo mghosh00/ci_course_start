@@ -1,26 +1,26 @@
-name: Python versions
+
+name: Operating systems
 
 on:
   push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
-  build-linux:
+  build:
+
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      max-parallel: 5
 
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
-        python-version: '3.10'
-    - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
+        python-version: "3.10"
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip setuptools wheel
