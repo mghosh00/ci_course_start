@@ -8,6 +8,7 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       max-parallel: 5
 
     steps:
@@ -26,8 +27,7 @@ jobs:
         python -m pip install .[dev]
     - name: Lint with flake8
       run: |
-        conda install flake8
+        flake8
     - name: Test with pytest
       run: |
-        conda install pytest
         pytest
